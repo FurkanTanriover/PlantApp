@@ -4,6 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -14,6 +15,18 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "PlantApp";
+  }
+
+  /**
+   * We override onCreate() to pass null to the super method to avoid the default behavior of
+   * restoring the instance state. This is necessary because we want to use the new architecture
+   * with Concurrent React and Fabric, but the default behavior of restoring the instance state is
+   * not compatible with Concurrent React. If you don't want to use Concurrent React, you can
+   * remove this method and call super.onCreate(savedInstanceState) instead.
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 
   /**

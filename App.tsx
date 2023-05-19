@@ -6,10 +6,13 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {StyleSheet} from 'react-native';
+import AppNavigation from './src/navigation/App';
 
 function App(): JSX.Element {
-  return <SafeAreaView></SafeAreaView>;
+  return <AppNavigation />;
 }
 
 export default App;
+
+const styles = StyleSheet.create({});
