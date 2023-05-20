@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      rubikRegular: ['Rubik-Regular'],
+      rubikBold: ['Rubik-Bold'],
+    },
   },
   plugins: [],
 };
