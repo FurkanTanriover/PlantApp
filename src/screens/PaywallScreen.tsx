@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 
 const PaywallScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>PaywallScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
