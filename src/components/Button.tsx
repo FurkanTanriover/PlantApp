@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({title, onClick}) => {
   return (
     <TouchableOpacity
       onPress={handlePress}
-      className="w-[327px] h-[56px] justify-center items-center bg-[#28AF6E] rounded-[12px] px-[18px] py-[16px]">
+      className="z-50 w-[327px] h-[56px] justify-center items-center bg-[#28AF6E] rounded-[12px] px-[18px] py-[16px]">
       {/* //TODO: fix the text fontFamily */}
       <Text className="text-white font-rubikRegular">{title}</Text>
     </TouchableOpacity>
