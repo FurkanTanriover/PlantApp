@@ -2,11 +2,13 @@ import {
   GET_PLANT_CATEGORIES,
   GET_PLANT_QUESTIONS,
   SET_ONBOARDING_STATUS,
+  SET_PAYWALL_STATUS,
 } from '../utils/constants';
-import {saveOnboardingStatus} from '../utils/storage';
+import {saveOnboardingStatus, savePaywallStatus} from '../utils/storage';
 
 const initialState = {
   showOnboarding: true,
+  showPaywall: true,
   plantCategories: [],
   plantQuestions: [],
 };
@@ -18,6 +20,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showOnboarding: action.payload,
+      };
+    case SET_PAYWALL_STATUS:
+      savePaywallStatus(action.payload);
+      return {
+        ...state,
+        showPaywall: action.payload,
       };
     case GET_PLANT_CATEGORIES:
       return {
