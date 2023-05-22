@@ -1,16 +1,19 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {horizontalScale, verticalScale} from '../../utils/metrics';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../utils/metrics';
 
 const View1 = () => {
   return (
     <View>
       {/* title section */}
       <View style={styles.titleSection}>
-        <Text className={'text-[28px] font-rubikRegular'}>
-          Take a photo to{' '}
-          <Text className={'text-[28px] font-rubikBold'}>identify </Text> the
-          plant!
+        <Text style={styles.titleText} className={' font-rubikRegular'}>
+          Take a photo to <Text className={' font-rubikBold'}>identify </Text>{' '}
+          the plant!
         </Text>
         <Image
           source={require('../../assets/images/brush.png')}
@@ -40,6 +43,9 @@ const styles = StyleSheet.create({
   },
   contentSection: {
     height: verticalScale(400),
+  },
+  titleText: {
+    fontSize: moderateScale(28),
   },
 });
 

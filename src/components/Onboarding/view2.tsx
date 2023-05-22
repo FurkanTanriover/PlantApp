@@ -11,11 +11,8 @@ const View2 = () => {
     <View>
       {/* title section */}
       <View style={styles.titleSection}>
-        <Text className={`text-[${moderateScale(28)}px] font-rubikRegular`}>
-          Get plant{' '}
-          <Text className={`text-[${moderateScale(28)}px] font-rubikBold`}>
-            care guides
-          </Text>
+        <Text style={styles.titleText} className={' font-rubikRegular'}>
+          Get plant <Text className={' font-rubikBold'}>care guides</Text>
         </Text>
         <Image
           source={require('../../assets/images/brush.png')}
@@ -55,6 +52,9 @@ const styles = StyleSheet.create({
   contentSection: {
     height: verticalScale(600),
     justifyContent: 'flex-start',
+  },
+  titleText: {
+    fontSize: moderateScale(28),
   },
 });
 
