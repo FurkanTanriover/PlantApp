@@ -16,9 +16,11 @@ import {getPlantCategories, getPlantQuestions} from '../redux/action';
 import {horizontalScale, moderateScale, verticalScale} from '../utils/metrics';
 import {useDispatch, useSelector} from 'react-redux';
 import {openWebsite} from '../utils/openWebsite';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const {plantCategories, plantQuestions} = useSelector(state => state.reducer);
   useEffect(() => {
     getPlantCategories(dispatch);
@@ -47,7 +49,7 @@ const HomeScreen = () => {
         />
       </View>
       {/* premium available section */}
-      <View style={styles.premiumAvailable}>
+      <TouchableOpacity onPress={()=>{navigation.navigate("PaywallScreen")}} style={styles.premiumAvailable}>
         <Image
           style={{width: moderateScale(36), height: moderateScale(30)}}
           source={require('../../src/assets/icons/mail.png')}
@@ -64,7 +66,7 @@ const HomeScreen = () => {
           style={{width: moderateScale(24), height: moderateScale(24)}}
           source={require('../../src/assets/icons/arrow.png')}
         />
-      </View>
+      </TouchableOpacity>
       {/* get started section */}
       <View style={styles.getStartedSection}>
         <Text className="font-rubikRegular font-[500] text-[15px]">
