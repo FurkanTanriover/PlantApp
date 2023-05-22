@@ -55,6 +55,12 @@ yarn install
 yarn start
 ```
 
+5. Uygulamayı geliştirme modunda başlatmak için aşağıdaki komutu çalıştırın:
+
+```shell
+yarn android  # Android için
+yarn ios      # iOS için
+```
 
 
 
