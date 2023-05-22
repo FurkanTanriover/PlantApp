@@ -96,16 +96,12 @@ const PaywallScreen = () => {
             )}px] font-rubikBold font-[700] text-white`}>
             PlantApp{' '}
             <Text
-              className={`text-[${moderateScale(
-                24,
-              )}px] font-rubikRegular font-[300] text-white`}>
+              className={'text-[24px] font-rubikRegular font-[300] text-white'}>
               Premium
             </Text>
           </Text>
           <Text
-            className={`text-[${moderateScale(16)}px] pt-${verticalScale(
-              2,
-            )} opacity-70  font-rubikRegular text-white`}>
+            className={`text-[16px] pt-2 opacity-70  font-rubikRegular text-white`}>
             Access All Features
           </Text>
         </View>
