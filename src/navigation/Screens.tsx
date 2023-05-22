@@ -145,17 +145,9 @@ const Screens: React.FC = () => {
           <Stack.Screen name="Onboarding" component={Onboarding} />
         </>
       ) : (
-        <>
-          {showPaywall ? (
-            <>
-              <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
-              <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
-            </>
-          ) : (
-            <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
-          )}
-        </>
+        <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
       )}
+      <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
     </Stack.Navigator>
   );
 };
