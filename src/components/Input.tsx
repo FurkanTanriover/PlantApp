@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     width: moderateScale(20),
     height: moderateScale(20),
-    color: '#000',
+
   },
   input: {
     fontFamily: 'Rubik-Regular',

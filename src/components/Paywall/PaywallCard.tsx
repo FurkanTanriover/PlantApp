@@ -19,12 +19,13 @@ const PaywallCard: React.FC<PaywallCardProps> = props => {
     <View style={styles.card}>
       <Image source={icon} />
       <Text
-        className={
-          'mt-[16] text-white font-rubikRegular font-[500] text-[20px]'
-        }>
+        className={`mt-[${verticalScale(16)}] text-white font-rubikRegular font-[500] text-[20px]`}>
         {title}
       </Text>
-      <Text className="mt-[4] text-white font-rubikRegular font-[400] text-[13px] opacity-70">
+      <Text
+        className={`mt-[${verticalScale(
+          4,
+        )}] text-white font-rubikRegular font-[400] text-[13px] opacity-70`}>
         {description}
       </Text>
     </View>
