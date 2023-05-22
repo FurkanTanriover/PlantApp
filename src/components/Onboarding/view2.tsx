@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     height: verticalScale(66),
   },
   contentSection: {
-    backgroundColor: 'red',
     height: verticalScale(600),
     justifyContent: 'flex-start',
   },
