@@ -16,8 +16,18 @@ import PaywallCard from '../components/Paywall/PaywallCard';
 import PaywallPaymentCard from '../components/Paywall/PaywallPaymentCard';
 import Button from '../components/Button';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {setPaywallStatus} from '../redux/action';
 
 const PaywallScreen = () => {
+  const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const handleSelect = (index: any) => {
+    setSelectedCardIndex(index);
+  };
+
   const cardData = [
     {
       title: 'Unlimited',
@@ -36,7 +46,10 @@ const PaywallScreen = () => {
     },
   ];
 
-  const navigation = useNavigation();
+  const handlePaywallComplete = async () => {
+    dispatch(setPaywallStatus(false));
+    navigation.navigate('TabStackScreen');
+  };
 
   const paymentCardData = [
     {
@@ -62,7 +75,7 @@ const PaywallScreen = () => {
         <TouchableOpacity
           style={styles.closeImage}
           onPress={() => {
-            navigation.navigate('TabStackScreen');
+            handlePaywallComplete();
           }}>
           <Image
             style={{width: moderateScale(24), height: moderateScale(24)}}
@@ -89,7 +102,10 @@ const PaywallScreen = () => {
               Premium
             </Text>
           </Text>
-          <Text className="text-[16px] pt-2 opacity-70  font-rubikRegular text-white">
+          <Text
+            className={`text-[${moderateScale(16)}px] pt-${verticalScale(
+              2,
+            )} opacity-70  font-rubikRegular text-white`}>
             Access All Features
           </Text>
         </View>
@@ -113,6 +129,8 @@ const PaywallScreen = () => {
           {paymentCardData.map((card, index) => (
             <View key={index}>
               <PaywallPaymentCard
+                onPress={() => handleSelect(index)}
+                isSelect={selectedCardIndex === index}
                 title={card.title}
                 description={card.description}
               />

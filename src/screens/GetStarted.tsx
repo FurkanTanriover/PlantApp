@@ -40,8 +40,12 @@ const GetStarted = () => {
         {/* legal section */}
         <View style={styles.legalSection}>
           <Text className="text-[11px] text-center font-rubikRegular  opacity-70">
-            By tapping next, you are agreeing to PlantID Terms of Use & Privacy
-            Policy.
+            By tapping next, you are agreeing to PlantID{' '}
+            <Text style={{textDecorationLine: 'underline'}}>Terms of Use</Text>{' '}
+            &{' '}
+            <Text style={{textDecorationLine: 'underline'}}>
+              Privacy Policy.
+            </Text>
           </Text>
         </View>
       </View>
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: verticalScale(29),
+    bottom: verticalScale(51),
     left: horizontalScale(25),
   },
   legalSection: {

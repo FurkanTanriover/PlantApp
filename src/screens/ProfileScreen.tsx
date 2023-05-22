@@ -5,7 +5,7 @@ import {Text} from 'react-native';
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Diagnose Screen</Text>
+      <Text>Profile Screen</Text>
     </View>
   );
 };

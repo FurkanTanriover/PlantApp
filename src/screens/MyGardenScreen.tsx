@@ -5,7 +5,7 @@ import {Text} from 'react-native';
 const MyGardenScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Diagnose Screen</Text>
+      <Text>MyGarden Screen</Text>
     </View>
   );
 };
