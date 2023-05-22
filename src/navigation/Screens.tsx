@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setOnboardingStatus} from '../redux/action';
+import {setOnboardingStatus, setPaywallStatus} from '../redux/action';
 import GetStarted from '../screens/GetStarted';
 import HomeScreen from '../screens/HomeScreen';
 import Loader from '../screens/Loader';
 import Onboarding from '../screens/Onboarding';
 import PaywallScreen from '../screens/PaywallScreen';
-import {loadOnboardingStatus} from '../utils/storage';
+import {loadOnboardingStatus, loadPaywallStatus} from '../utils/storage';
 import {verticalScale, horizontalScale} from '../utils/metrics';
 import DiagnoseScreen from '../screens/DiagnoseScreen';
 import MyGardenScreen from '../screens/MyGardenScreen';
@@ -104,9 +104,12 @@ const TabStackScreen: React.FC = () => {
 
 const Screens: React.FC = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
   const showOnboarding = useSelector(
     (state: any) => state.reducer.showOnboarding,
   );
+  const showPaywall = useSelector((state: any) => state.reducer.showPaywall);
 
   useEffect(() => {
     const checkOnboardingStatus = async () => {
@@ -116,11 +119,23 @@ const Screens: React.FC = () => {
       }
     };
     checkOnboardingStatus();
+    const checkPaywallStatus = async () => {
+      const status = await loadPaywallStatus();
+      if (status !== null) {
+        dispatch(setPaywallStatus(status));
+      }
+      setIsLoading(false);
+    };
+    checkPaywallStatus();
   }, [dispatch]);
 
   const globalScreenOptions = {
     headerShown: false,
   };
+
+  if (isLoading) {
+    return <Loader />; // Yüklenme durumundayken Loader bileşenini render et
+  }
 
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
@@ -131,8 +146,14 @@ const Screens: React.FC = () => {
         </>
       ) : (
         <>
-          <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
-          <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
+          {showPaywall ? (
+            <>
+              <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
+              <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
+            </>
+          ) : (
+            <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
+          )}
         </>
       )}
     </Stack.Navigator>
