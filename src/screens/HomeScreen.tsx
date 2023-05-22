@@ -5,6 +5,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Touchable,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import CategoryCard from '../components/Home/CategoryCard';
@@ -13,6 +15,7 @@ import Input from '../components/Input';
 import {getPlantCategories, getPlantQuestions} from '../redux/action';
 import {horizontalScale, moderateScale, verticalScale} from '../utils/metrics';
 import {useDispatch, useSelector} from 'react-redux';
+import {openWebsite} from '../utils/openWebsite';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -70,7 +73,12 @@ const HomeScreen = () => {
         <FlatList
           data={plantQuestions}
           renderItem={({item}) => (
-            <QuestionCard question={item.title} image={item.image_uri} />
+            <TouchableOpacity
+              onPress={() => {
+                openWebsite(item.uri);
+              }}>
+              <QuestionCard question={item.title} image={item.image_uri} />
+            </TouchableOpacity>
           )}
           horizontal
           style={styles.horizontalSection}
