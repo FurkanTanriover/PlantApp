@@ -34,7 +34,7 @@ const View2 = () => {
           resizeMode="contain"
           style={{
             width: horizontalScale(375),
-            height: verticalScale(600),
+            height: verticalScale(590),
           }}
           source={require('../../assets/images/onboarding-2.png')}
         />
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     height: verticalScale(66),
   },
   contentSection: {
+    backgroundColor: 'red',
     height: verticalScale(600),
     justifyContent: 'flex-start',
   },
