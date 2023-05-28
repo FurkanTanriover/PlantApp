@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -5,16 +6,16 @@ import React, {useEffect, useState} from 'react';
 import {Image, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setOnboardingStatus, setPaywallStatus} from '../redux/action';
+import DiagnoseScreen from '../screens/DiagnoseScreen';
 import GetStarted from '../screens/GetStarted';
 import HomeScreen from '../screens/HomeScreen';
 import Loader from '../screens/Loader';
+import MyGardenScreen from '../screens/MyGardenScreen';
 import Onboarding from '../screens/Onboarding';
 import PaywallScreen from '../screens/PaywallScreen';
-import {loadOnboardingStatus, loadPaywallStatus} from '../utils/storage';
-import {verticalScale, horizontalScale} from '../utils/metrics';
-import DiagnoseScreen from '../screens/DiagnoseScreen';
-import MyGardenScreen from '../screens/MyGardenScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import {horizontalScale, verticalScale} from '../utils/metrics';
+import {loadOnboardingStatus, loadPaywallStatus} from '../utils/storage';
 
 type RootStackParamList = {
   GetStarted: undefined;

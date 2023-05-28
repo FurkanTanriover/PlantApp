@@ -1,6 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import {useNavigation} from '@react-navigation/native';
-import React, {FC, useState} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import React, {FC, useRef, useState} from 'react';
+import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import Button from '../components/Button';
 
 import View1 from '../components/Onboarding/view1';
@@ -19,38 +20,78 @@ const Onboarding: FC<OnboardingProps> = () => {
   const isLastStep = step === 1;
 
   const dispatch = useDispatch();
+  const flatListRef = useRef<FlatList>(null);
 
   const handleOnboardingComplete = async () => {
     dispatch(setOnboardingStatus(false));
     navigation.navigate('PaywallScreen');
   };
 
+  const onViewChange = (index: number) => {
+    setStep(index);
+  };
+
+  const renderOnboardingItem = ({
+    item,
+    index,
+  }: {
+    item: number;
+    index: number;
+  }) => {
+    return index === 0 ? <View1 /> : <View2 />;
+  };
+
+  const handleButtonPress = () => {
+    if (isLastStep) {
+      handleOnboardingComplete();
+    } else {
+      flatListRef.current?.scrollToIndex({index: step + 1});
+      setStep(step + 1);
+    }
+  };
+
   return (
-    <SafeAreaView className="flex-1">
-      {/* content section */}
-      {step === 0 ? <View1 /> : <View2 />}
+    <SafeAreaView style={{flex: 1}}>
+      <FlatList
+        ref={flatListRef}
+        data={stepDot}
+        renderItem={renderOnboardingItem}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={event => {
+          const newIndex = Math.round(
+            event.nativeEvent.contentOffset.x / horizontalScale(375),
+          );
+          onViewChange(newIndex);
+        }}
+      />
       {/* bottom section */}
       <View style={styles.bottomSection}>
         <Button
-          title={step === 0 ? 'Continue' : 'Start'}
-          onClick={() => {
-            if (isLastStep) {
-              handleOnboardingComplete();
-              return;
-            }
-            setStep(step + 1);
-          }}
+          title={isLastStep ? 'Start' : 'Continue'}
+          onClick={handleButtonPress}
         />
         {/* step dot section */}
-        <View className="flex flex-row justify-center items-center mt-[32px]">
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 32,
+          }}>
           {stepDot.map((item, index) => (
             <View
               key={index}
-              className={`${
-                step === index ? 'w-[10px] h-[10px]' : 'w-[8px] h-[8px]'
-              }  rounded-full ${
-                step === index ? 'bg-[#13231B]' : 'bg-[#13231B] opacity-25'
-              } mx-[4px]`}
+              style={{
+                width: step === index ? 10 : 8,
+                height: step === index ? 10 : 8,
+                borderRadius: step === index ? 5 : 4,
+                backgroundColor: step === index ? '#13231B' : '#13231B',
+                opacity: step === index ? 1 : 0.25,
+                marginHorizontal: 4,
+              }}
             />
           ))}
         </View>
