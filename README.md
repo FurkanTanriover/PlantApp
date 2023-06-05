@@ -24,7 +24,7 @@
 
 ## Başlangıç
 
-Bu talimatlar, projeyi yerel makinenizde geliştirmek ve test etmek için size kılavuzluk edecektir. Uygulamayı dağıtmak için [Dağıtım](#dağıtım) bölümüne bakabilirsiniz.
+Bu talimatlar, projeyi yerel makinenizde geliştirmek ve test etmek için size kılavuzluk edecektir.
 
 ### Önkoşullar
 
